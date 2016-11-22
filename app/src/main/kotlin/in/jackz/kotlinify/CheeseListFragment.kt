@@ -22,6 +22,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -97,9 +98,12 @@ class CheeseListFragment : Fragment() {
 
             holder.mView.setOnClickListener { v ->
                 val context = v.context
-                val intent = Intent(context, CheeseDetailActivity::class.java)
+                var user =User("101","jackz")
+                Log.d("hai",user.password)
+                val intent = Intent(context, SecondActivity::class.java)
                 intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString)
-
+                intent.putExtra("data", user)
+                intent.putExtra("hai",Model("hi","hello"))
                 context.startActivity(intent)
             }
 

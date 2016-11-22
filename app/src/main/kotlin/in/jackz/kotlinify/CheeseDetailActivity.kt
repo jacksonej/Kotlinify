@@ -25,7 +25,6 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 
 
 class CheeseDetailActivity : AppCompatActivity() {
@@ -44,12 +43,19 @@ class CheeseDetailActivity : AppCompatActivity() {
         val collapsingToolbar = findViewById(R.id.collapsing_toolbar) as CollapsingToolbarLayout
         collapsingToolbar.title = cheeseName
 
+
+
         loadBackdrop()
     }
 
+
+
+
+
+
     private fun loadBackdrop() {
         val imageView = findViewById(R.id.backdrop) as ImageView
-        Glide.with(this).load(Cheeses.getRandomCheeseDrawable()).centerCrop().into(imageView)
+        imageView.loadImg(Cheeses.getRandomCheeseDrawable())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
