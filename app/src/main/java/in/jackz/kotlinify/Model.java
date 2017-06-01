@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Model implements Serializable {
 
     String id;
-    String name;
+    private String name;
 
     public String getId() {
         return id;

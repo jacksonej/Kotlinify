@@ -34,6 +34,8 @@ import java.util.*
 
 class CheeseListFragment : Fragment() {
 
+    var mAdapter : SimpleStringRecyclerViewAdapter ?=null
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rv = inflater!!.inflate(
                 R.layout.fragment_cheese_list, container, false) as RecyclerView
@@ -42,9 +44,14 @@ class CheeseListFragment : Fragment() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        recyclerView.adapter = SimpleStringRecyclerViewAdapter(activity,
-                getRandomSublist(Cheeses.sCheeseStrings, 30))
+        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context) as RecyclerView.LayoutManager?
+        mAdapter= SimpleStringRecyclerViewAdapter(activity, getRandomSublist(Cheeses.sCheeseStrings, 30))
+        recyclerView.adapter = mAdapter
+    }
+
+    private fun changeValues(){
+        mAdapter?.setValues(getRandomSublist(Cheeses.sCheeseStrings, 30))
+
     }
 
     private fun getRandomSublist(array: Array<String>, amount: Int): List<String> {
@@ -56,7 +63,7 @@ class CheeseListFragment : Fragment() {
         return list
     }
 
-    class SimpleStringRecyclerViewAdapter(context: Context, private val mValues: List<String>) : RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder>() {
+    class SimpleStringRecyclerViewAdapter(context: Context, private var mValues: List<String>) : RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder>() {
 
         private val mTypedValue = TypedValue()
         private val mBackground: Int
@@ -79,6 +86,13 @@ class CheeseListFragment : Fragment() {
         fun getValueAt(position: Int): String {
             return mValues[position]
         }
+
+        fun setValues(values: List<String>)
+        {
+            mValues = values
+            notifyDataSetChanged()
+        }
+
 
         init {
             context.theme.resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true)

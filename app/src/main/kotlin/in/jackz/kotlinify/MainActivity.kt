@@ -21,8 +21,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+
+    val text:TextView?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +35,19 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
+        var  mode = Model ("","")
+        mode.name="hai"
       /*  val fab = findViewById(R.id.floatingActionButton) as FloatingActionButton
         fab.setOnClickListener {
             view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }*/
 
         changeFragment(CheeseListFragment())
+
+        var employee=Employee()
+        employee.firstName="jackson"
+        employee.lastName="E J"
+        Log.d("hai",employee.fullName)
     }
 
 
