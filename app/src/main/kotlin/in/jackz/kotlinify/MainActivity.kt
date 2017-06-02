@@ -17,12 +17,15 @@
 
 package `in`.jackz.kotlinify
 
+import `in`.jackz.kotlinify.adapters.Myadpter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,6 +51,15 @@ class MainActivity : AppCompatActivity() {
         employee.firstName="jackson"
         employee.lastName="E J"
         Log.d("hai",employee.fullName)
+
+        var mString=ArrayList<String>();
+        mString.add("hai")
+        mString.add("hello")
+        Myadpter(mString,{
+            Toast.makeText(this,"toasted",Toast.LENGTH_SHORT).show()
+        }
+        )
+
     }
 
 
